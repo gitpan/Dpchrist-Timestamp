@@ -1,0 +1,84 @@
+#! /usr/bin/perl
+#######################################################################
+# $Id: timestamp,v 1.6 2010-06-06 01:22:57 dpchrist Exp $
+#######################################################################
+# uses:
+#----------------------------------------------------------------------
+
+use warnings;
+use strict;
+
+use Dpchrist::Timestamp qw( timestamp );
+
+our $VERSION = sprintf("%d.%03d", q$Revision: 1.6 $ =~ /(\d+)/g);
+
+#######################################################################
+# script:
+#----------------------------------------------------------------------
+
+{
+    print timestamp(), "\n";
+}
+
+#######################################################################
+# end of code:
+#----------------------------------------------------------------------
+
+__END__
+
+#######################################################################
+
+=head1 NAME
+
+timestamp - print a (local time) time stamp to STDOUT
+
+
+=head1 SYNOPSIS
+
+    timestamp
+
+
+=head1 DESCRIPTION
+
+Prints a (local time) time stamp to STDOUT of the format:
+
+    YYYYMMDD-hhmmss
+    
+Where:
+
+    YYYY is the year
+    MM   is the month
+    DD   is the day
+    -    is a dash '-'
+    hh   is the hour
+    mm   is the minute
+    ss   is the second
+
+Useful for log entries, tarball file names, etc..
+
+=head1 AUTHOR
+
+David Paul Christensen dpchrist@holgerdanske.com
+
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2010 by David Paul Chirstensen dpchrist@holgerdanske.com
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; version 2.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307,
+USA.
+
+=cut
+
+#######################################################################

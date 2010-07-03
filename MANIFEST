@@ -1,0 +1,17 @@
+LICENSE
+Makefile.PL
+MANIFEST
+bin/timestamp
+bin/timestampz
+lib/Dpchrist/Timestamp.pm
+lib/Dpchrist/Timestamp/Testutils.pm
+t/0_compile_modules.t
+t/0_compile_scripts.t
+t/1-Dpchrist-Timestamp.t
+t/2-timestamp.t
+t/2-timestampz.t
+t/3-timestamp.t
+t/3-timestampz.t
+t/9_pod.t
+t/9_prereq.t
+META.yml                                 Module meta-data (added by MakeMaker)
