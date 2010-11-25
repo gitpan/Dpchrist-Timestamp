@@ -1,5 +1,5 @@
 #######################################################################
-# $Id: Makefile.PL,v 1.7 2010-11-25 02:55:10 dpchrist Exp $
+# $Id: Makefile.PL,v 1.8 2010-11-25 18:24:56 dpchrist Exp $
 #
 # Copyright 2010 by David Paul Christensen dpchrist@holgerdanske.com
 #
@@ -27,6 +27,7 @@ use Dpchrist::Module::MakefilePL (
 	bin/timestamp
 	bin/timestampz
     ) ],
+    -readme	 	=> qw( lib/Dpchrist/Timestamp.pm ),
     -release		=> $ENV{RELEASE_ROOT},
 );
 
@@ -34,7 +35,7 @@ WriteMakefile(
     NAME              => 'Dpchrist::Timestamp',
     VERSION_FROM      => 'lib/Dpchrist/Timestamp.pm',
     PREREQ_PM         => {
-	'Dpchrist::Module'	=> 1.017,
+	'Dpchrist::Module'	=> 1.021,
 	'feature'		=> 0,
     },
     ABSTRACT_FROM	=> 'lib/Dpchrist/Timestamp.pm',
