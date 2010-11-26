@@ -1,5 +1,5 @@
 #######################################################################
-# $Id: Makefile.PL,v 1.8 2010-11-25 18:24:56 dpchrist Exp $
+# $Id: Makefile.PL,v 1.9 2010-11-26 20:34:45 dpchrist Exp $
 #
 # Copyright 2010 by David Paul Christensen dpchrist@holgerdanske.com
 #
@@ -35,7 +35,7 @@ WriteMakefile(
     NAME              => 'Dpchrist::Timestamp',
     VERSION_FROM      => 'lib/Dpchrist/Timestamp.pm',
     PREREQ_PM         => {
-	'Dpchrist::Module'	=> 1.021,
+	'Dpchrist::Module'	=> 1.023,
 	'feature'		=> 0,
     },
     ABSTRACT_FROM	=> 'lib/Dpchrist/Timestamp.pm',
