@@ -1,5 +1,5 @@
 #######################################################################
-# $Id: Makefile.PL,v 1.9 2010-11-26 20:34:45 dpchrist Exp $
+# $Id: Makefile.PL,v 1.10 2010-11-27 03:38:00 dpchrist Exp $
 #
 # Copyright 2010 by David Paul Christensen dpchrist@holgerdanske.com
 #
@@ -18,25 +18,34 @@
 # USA.
 #######################################################################
 
-use ExtUtils::MakeMaker;
+eval {
+    require Dpchrist::Module::MakefilePL;
+    
+    import Dpchrist::Module::MakefilePL (
+	-mcpani		=> $ENV{CPAN_AUTHORID},
+	-pod2html	=> [ qw(
+	    lib/Dpchrist/Timestamp.pm
+	    bin/timestamp
+	    bin/timestampz
+	) ],
+	-readme	 	=> 'lib/Dpchrist/Timestamp.pm',
+	-release	=> $ENV{RELEASE_ROOT},
+    );
+};
+warn $@ if $@;
 
-use Dpchrist::Module::MakefilePL (
-    -mcpani		=> $ENV{CPAN_AUTHORID},
-    -pod2html	 	=> [ qw(
-	lib/Dpchrist/Timestamp.pm
-	bin/timestamp
-	bin/timestampz
-    ) ],
-    -readme	 	=> qw( lib/Dpchrist/Timestamp.pm ),
-    -release		=> $ENV{RELEASE_ROOT},
-);
+use ExtUtils::MakeMaker;
 
 WriteMakefile(
     NAME              => 'Dpchrist::Timestamp',
     VERSION_FROM      => 'lib/Dpchrist/Timestamp.pm',
     PREREQ_PM         => {
-	'Dpchrist::Module'	=> 1.023,
-	'feature'		=> 0,
+	Dpchrist::Module	=> 1.025,
+	Getopt::Long		=> 0,
+	Pod::Html		=> 0,
+	Pod::Text		=> 0,
+	Pod::Usage		=> 0,
+	feature			=> 0,
     },
     ABSTRACT_FROM	=> 'lib/Dpchrist/Timestamp.pm',
     AUTHOR		=>

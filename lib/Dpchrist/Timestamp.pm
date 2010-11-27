@@ -1,5 +1,5 @@
 #######################################################################
-# $Id: Timestamp.pm,v 1.14 2010-11-26 20:34:45 dpchrist Exp $
+# $Id: Timestamp.pm,v 1.15 2010-11-27 03:38:00 dpchrist Exp $
 #######################################################################
 # package stuff:
 #----------------------------------------------------------------------
@@ -22,7 +22,7 @@ our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 
 our @EXPORT = ();
 
-our $VERSION = sprintf "%d.%03d", q$Revision: 1.14 $ =~ /: (\d+)\.(\d+)/;
+our $VERSION = sprintf "%d.%03d", q$Revision: 1.15 $ =~ /: (\d+)\.(\d+)/;
 
 #######################################################################
 # functions:
@@ -67,7 +67,7 @@ Dpchrist::Timestamp - generate time stamps
 
 =head1 DESCRIPTION
 
-This documentation describes module revision $Revision: 1.14 $.
+This documentation describes module revision $Revision: 1.15 $.
 
 
 This is alpha test level software
@@ -115,17 +115,36 @@ for use in shell scripts, etc..
 
 None by default.
 
-=cut
-
 
 =head1 INSTALLATION
 
-To install this module type the following:
+Old school:
 
-    perl Makefile.PL
-    make
-    make test
-    make install
+    $ perl Makefile.PL
+    $ make    
+    $ make test
+    $ make install 
+
+Minimal:
+
+    $ cpan Dpchrist::Timestamp
+
+Complete:
+
+    $ cpan Bundle::Dpchrist
+
+The following warning may be safely ignored:
+
+    Can't locate Dpchrist/Module/MakefilePL.pm in @INC (@INC contains: /
+    etc/perl /usr/local/lib/perl/5.10.0 /usr/local/share/perl/5.10.0 /us
+    r/lib/perl5 /usr/share/perl5 /usr/lib/perl/5.10 /usr/share/perl/5.10
+    /usr/local/lib/site_perl .) at Makefile.PL line 22.
+
+
+=head2 PREREQUISITES
+
+See Makefile.PL in the source distribution root directory.
+
 
 =head1 SEE ALSO
 
