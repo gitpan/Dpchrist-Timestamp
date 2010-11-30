@@ -1,6 +1,6 @@
 #! /usr/bin/perl
 #######################################################################
-# $Id: 3-timestampz.t,v 1.3 2010-06-06 01:22:58 dpchrist Exp $
+# $Id: 3-timestampz.t,v 1.4 2010-11-30 06:38:06 dpchrist Exp $
 #
 # Verify timestampz script output.
 #
@@ -23,32 +23,38 @@
 # uses:
 #----------------------------------------------------------------------
 
+use Test::More tests		=> 1;
+
 use strict;
 use warnings;
 
+use Carp;
 use Data::Dumper;
-$Data::Dumper::Sortkeys = 1;
-
 use Dpchrist::Timestamp;
+use File::Spec::Functions;
 
-use Test::More tests => 1;
+$|				= 1;
+$Data::Dumper::Sortkeys		= 1;
 
 #######################################################################
 # script:
 #----------------------------------------------------------------------
 
 {
-    my $line = "bin/timestampz";
-    my $e = `$line`;
-    chomp $e;
-    if ($e && $e =~ /^\d{8}T\d{6}Z$/) {
-	ok(1);
-    }
-    else {
-	diag Data::Dumper->Dump([$line, $e, $!],
-			      [qw(line   e   !)]);
-	ok(0);
-    }
+    my ($r, $line);
+
+    $r = eval {
+	$line = catfile 'bin', 'timestampz';
+	`$line`;
+    };
+    ok (
+	!$@
+	&& defined $r
+	&& $r =~ /^\d{8}T\d{6}Z\n$/
+    ) or confess join(' ',
+	Data::Dumper->Dump([$@, $line, $r, $!],
+			 [qw(@   line   r   !)]),
+    );
 }
 
 #######################################################################

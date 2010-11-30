@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Dpchrist-Timestamp
-version:            1.016
+version:            1.017
 abstract:           generate time stamps
 author:
     - David Paul Christensen <dpchrist@holgerdanske.com>
