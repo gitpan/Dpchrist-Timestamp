@@ -1,6 +1,6 @@
 #! /usr/bin/perl
 #######################################################################
-# $Id: timestamp,v 1.6 2010-06-06 01:22:57 dpchrist Exp $
+# $Id: timestampz,v 1.4 2010-12-01 06:51:28 dpchrist Exp $
 #######################################################################
 # uses:
 #----------------------------------------------------------------------
@@ -8,16 +8,16 @@
 use warnings;
 use strict;
 
-use Dpchrist::Timestamp qw( timestamp );
+use Dpchrist::Timestamp qw( timestampz );
 
-our $VERSION = sprintf("%d.%03d", q$Revision: 1.6 $ =~ /(\d+)/g);
+our $VERSION = sprintf("%d.%03d", q$Revision: 1.4 $ =~ /(\d+)/g);
 
 #######################################################################
 # script:
 #----------------------------------------------------------------------
 
 {
-    print timestamp(), "\n";
+    print timestampz(), "\n";
 }
 
 #######################################################################
@@ -30,31 +30,39 @@ __END__
 
 =head1 NAME
 
-timestamp - print a (local time) time stamp to STDOUT
+timestampz - print a UTC time (Zulu) time stamp to STDOUT
 
 
 =head1 SYNOPSIS
 
-    timestamp
+    timestampz
 
 
 =head1 DESCRIPTION
 
-Prints a (local time) time stamp to STDOUT of the format:
+Prints a UTC time (Zulu) time stamp to STDOUT of the format:
 
-    YYYYMMDD-hhmmss
-    
+    YYYYMMDDThhmmssZ
+
 Where:
 
     YYYY is the year
     MM   is the month
     DD   is the day
-    -    is a dash '-'
+    T    is the letter 'T'
     hh   is the hour
     mm   is the minute
     ss   is the second
+    Z    is the letter 'Z'
 
 Useful for log entries, tarball file names, etc..
+
+
+=head1 SEE ALSO
+
+    Dpchrist::Timestamp
+    timestampz
+
 
 =head1 AUTHOR
 

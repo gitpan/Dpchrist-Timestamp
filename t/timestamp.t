@@ -1,6 +1,6 @@
 #! /usr/bin/perl
 #######################################################################
-# $Id: 2-timestamp.t,v 1.3 2010-06-06 01:22:58 dpchrist Exp $
+# $Id: timestamp.t,v 1.4 2010-12-01 06:47:38 dpchrist Exp $
 #
 # Verify timestamp() function.
 #
@@ -23,61 +23,55 @@
 # uses:
 #----------------------------------------------------------------------
 
+use Test::More tests 		=> 2;
+
 use strict;
 use warnings;
 
+use Carp;
 use Data::Dumper;
-$Data::Dumper::Sortkeys = 1;
+use Dpchrist::Timestamp		qw( timestamp );
+use Dpchrist::LangUtil		qw( arrayref_cmp );
 
-use Dpchrist::Timestamp qw( timestamp );
-use Dpchrist::Timestamp::Testutils;
-
-use Test::More tests => 2;
+$|				= 1;
+$Data::Dumper::Sortkeys		= 1;
 
 #######################################################################
 # main script:
 #----------------------------------------------------------------------
 
 {
+    my ($r, @r, @t);
+
     ###### ($sec, $min, $hour, $mday, $mon, $year)
-    my @v = (localtime(time()))[0..5];
-    $v[5] += 1900;
-    $v[4]  += 1;
-    diag( Data::Dumper->Dump([\@v], [qw(*v)]) )
-	if $ENV{DEBUG};
+    @t = (localtime(time()))[0..5];
+    $t[5] += 1900;
+    $t[4]  += 1;
 
-    my $got = timestamp();
-    diag( Data::Dumper->Dump([$got], [qw(got)]) )
-	if $ENV{DEBUG};
+    $r = eval {
+	timestamp();
+    };
+    ok (							#     1
+	!$@
+	&& defined $r
+	&& $r =~ /^\d{8}-\d{6}$/,
+	 "verify basic format"
+    ) or confess join(' ',
+	Data::Dumper->Dump([$@, $r], [qw(@ r)]),
+    );
 
-    like($got, qr/^\d{8}-\d{6}$/,				#     1
-	 "verify basic format");
+    $r =~ /^(\d\d\d\d)(\d\d)(\d\d)-(\d\d)(\d\d)(\d\d)$/;
+    @r = ($6, $5, $4, $3, $2, $1);
 
-    $got =~ m|^(\d\d\d\d)(\d\d)(\d\d)-(\d\d)(\d\d)(\d\d)$|;
-    my @vgot = ($6, $5, $4, $3, $2, $1);
-    diag( Data::Dumper->Dump([\@vgot], [qw(*vgot)]) )
-	if $ENV{DEBUG};
-
-    if ($v[0] != $vgot[0]) {
-	diag("possible time slew detected");
-    	$v[0] = ($v[0] + 1) % 60;
-	if ($v[0] == 0) {
-	    diag("possible minutess rollover detected");
-	    $v[1] = ($v[1] + 1) % 60;
-	    if ($v[1] == 0) {
-		diag("possible hours rollover detected");
-		$v[2] = ($v[2] + 1) % 24;
-		if ($v[2] == 0) {
-		    $v[3] += 1;	# breaks on end of month
-		}
-	    }
-	}
-    }
-
-    								#     2
-    ok( array_equal(\@v, \@vgot), 'verify timestamp() against clock')
-	or diag( Data::Dumper->Dump([\@v, $got, \@vgot],
-				  [qw(*v   got   *vgot)]) );
+    ok (							#     2
+	arrayref_cmp(\@r, \@t)
+	|| abs($r[0] - $t[0]) % 60 < 2
+	   && abs($r[1] - $t[1]) % 60 < 2
+	   && abs($r[2] - $t[2]) % 24 < 2,
+	'verify timestamp() against clock - can fail at midnight'
+    ) or confess join(' ',
+	Data::Dumper->Dump([$@, \@r, \@t], [qw(@ *r *t)])
+    );
 }
 
 #######################################################################

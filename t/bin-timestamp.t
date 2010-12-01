@@ -1,6 +1,6 @@
 #! /usr/bin/perl
 #######################################################################
-# $Id: 3-timestamp.t,v 1.4 2010-11-30 06:38:06 dpchrist Exp $
+# $Id: bin-timestamp.t,v 1.6 2010-12-01 06:47:38 dpchrist Exp $
 #
 # Verify timestamp script output.
 #
@@ -29,6 +29,7 @@ use strict;
 use warnings;
 
 use Carp;
+use Config;
 use Data::Dumper;
 use Dpchrist::Timestamp;
 use File::Spec::Functions;
@@ -42,15 +43,17 @@ $Data::Dumper::Sortkeys		= 1;
 
 {
     my ($r, $line);
+    my $path_to_perl = $Config{perlpath};
 
     $r = eval {
-	$line = catfile 'bin', 'timestamp';
-	`$line`;
+	$line = catfile 'perl-bin', 'timestamp';
+	qx/$path_to_perl $line/;
     };
-    ok (
+    ok (							#     1
 	!$@
 	&& defined $r
-	&& $r =~ /^\d{8}-\d{6}\n$/
+	&& $r =~ /^\d{8}-\d{6}\n$/,
+	'verify basic format'
     ) or confess join(' ',
 	Data::Dumper->Dump([$@, $line, $r, $!],
 			 [qw(@   line   r   !)]),

@@ -1,8 +1,8 @@
 #! /usr/bin/perl
 #######################################################################
-# $Id: 3-timestampz.t,v 1.4 2010-11-30 06:38:06 dpchrist Exp $
+# $Id: Dpchrist-Timestamp.t,v 1.3 2010-06-06 01:22:58 dpchrist Exp $
 #
-# Verify timestampz script output.
+# Verify module can be use'd.
 #
 # Copyright 2010 by David Paul Christensen dpchrist@holgerdanske.com
 #
@@ -20,41 +20,9 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307,
 # USA.
 #######################################################################
-# uses:
-#----------------------------------------------------------------------
 
-use Test::More tests		=> 1;
+use Test::More tests => 1;
 
-use strict;
-use warnings;
-
-use Carp;
-use Data::Dumper;
-use Dpchrist::Timestamp;
-use File::Spec::Functions;
-
-$|				= 1;
-$Data::Dumper::Sortkeys		= 1;
-
-#######################################################################
-# script:
-#----------------------------------------------------------------------
-
-{
-    my ($r, $line);
-
-    $r = eval {
-	$line = catfile 'bin', 'timestampz';
-	`$line`;
-    };
-    ok (
-	!$@
-	&& defined $r
-	&& $r =~ /^\d{8}T\d{6}Z\n$/
-    ) or confess join(' ',
-	Data::Dumper->Dump([$@, $line, $r, $!],
-			 [qw(@   line   r   !)]),
-    );
-}
+BEGIN { use_ok('Dpchrist::Timestamp') };
 
 #######################################################################
