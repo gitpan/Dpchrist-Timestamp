@@ -1,5 +1,5 @@
 #######################################################################
-# $Id: Timestamp.pm,v 1.18 2010-11-30 20:20:16 dpchrist Exp $
+# $Id: Timestamp.pm,v 1.19 2010-12-03 05:13:52 dpchrist Exp $
 #######################################################################
 # package stuff:
 #----------------------------------------------------------------------
@@ -22,7 +22,7 @@ our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 
 our @EXPORT = ();
 
-our $VERSION = sprintf "%d.%03d", q$Revision: 1.18 $ =~ /: (\d+)\.(\d+)/;
+our $VERSION = sprintf "%d.%03d", q$Revision: 1.19 $ =~ /: (\d+)\.(\d+)/;
 
 #######################################################################
 # functions:
@@ -67,7 +67,7 @@ Dpchrist::Timestamp - generate time stamps
 
 =head1 DESCRIPTION
 
-This documentation describes module revision $Revision: 1.18 $.
+This documentation describes module revision $Revision: 1.19 $.
 
 
 This is alpha test level software
@@ -82,7 +82,7 @@ In a Perl script:
     use strict;
     use warnings;
 
-    use Dpchrist::TimeStamp qw( :all );
+    use Dpchrist::Timestamp qw( :all );
 
     my $local_timestamp = timestamp();
     my $zulu_timestamp  = timestampz();
@@ -115,6 +115,10 @@ for use in shell scripts, etc..
 
 None by default.
 
+All of the subroutines may be imported by using the ':all' tag:
+
+    use Dpchrist::Timestamp	qw( :all );
+
 
 =head1 INSTALLATION
 
@@ -132,13 +136,6 @@ Minimal:
 Complete:
 
     $ cpan Bundle::Dpchrist
-
-The following warning may be safely ignored:
-
-    Can't locate Dpchrist/Module/MakefilePL.pm in @INC (@INC contains: /
-    etc/perl /usr/local/lib/perl/5.10.0 /usr/local/share/perl/5.10.0 /us
-    r/lib/perl5 /usr/share/perl5 /usr/lib/perl/5.10 /usr/share/perl/5.10
-    /usr/local/lib/site_perl .) at Makefile.PL line 22.
 
 
 =head2 PREREQUISITES

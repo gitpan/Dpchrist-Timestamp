@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Dpchrist-Timestamp
-version:            1.018
+version:            1.019
 abstract:           generate time stamps
 author:
     - David Paul Christensen <dpchrist@holgerdanske.com>
@@ -11,7 +11,19 @@ configure_requires:
 build_requires:
     ExtUtils::MakeMaker:  0
 requires:
-    Dpchrist::LangUtil:  1.014
+    Carp:                 0
+    Config:               0
+    Data::Dumper:         0
+    Dpchrist::ExtUtils::MakeMaker:  1.015
+    Dpchrist::LangUtil:   1.015
+    Exporter:             0
+    ExtUtils::MakeMaker:  0
+    File::Spec::Functions:  0
+    Test::Compile:        0
+    Test::Manifest:       0
+    Test::More:           0
+    Test::Pod:            0
+    Test::Prereq:         0
 no_index:
     directory:
         - t

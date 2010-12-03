@@ -2,7 +2,7 @@ NAME
     Dpchrist::Timestamp - generate time stamps
 
 DESCRIPTION
-    This documentation describes module revision $Revision: 1.18 $.
+    This documentation describes module revision $Revision: 1.19 $.
 
     This is alpha test level software and may change or disappear at any
     time.
@@ -14,7 +14,7 @@ SYNOPSIS
         use strict;
         use warnings;
 
-        use Dpchrist::TimeStamp qw( :all );
+        use Dpchrist::Timestamp qw( :all );
 
         my $local_timestamp = timestamp();
         my $zulu_timestamp  = timestampz();
@@ -42,6 +42,10 @@ DESCRIPTION
   EXPORT
     None by default.
 
+    All of the subroutines may be imported by using the ':all' tag:
+
+        use Dpchrist::Timestamp     qw( :all );
+
 INSTALLATION
     Old school:
 
@@ -57,13 +61,6 @@ INSTALLATION
     Complete:
 
         $ cpan Bundle::Dpchrist
-
-    The following warning may be safely ignored:
-
-        Can't locate Dpchrist/Module/MakefilePL.pm in @INC (@INC contains: /
-        etc/perl /usr/local/lib/perl/5.10.0 /usr/local/share/perl/5.10.0 /us
-        r/lib/perl5 /usr/share/perl5 /usr/lib/perl/5.10 /usr/share/perl/5.10
-        /usr/local/lib/site_perl .) at Makefile.PL line 22.
 
   PREREQUISITES
     See Makefile.PL in the source distribution root directory.
