@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Dpchrist-Timestamp
-version:            1.020
+version:            1.021
 abstract:           generate time stamps
 author:
     - David Paul Christensen <dpchrist@holgerdanske.com>
@@ -14,7 +14,7 @@ requires:
     Carp:                 1.08
     Config:               0
     Data::Dumper:         2.12114
-    Dpchrist::LangUtil:   1.016
+    Dpchrist::LangUtil:   1.018
     Exporter:             5.62
     ExtUtils::MakeMaker:  6.54
     File::Spec::Functions:  3.2501
