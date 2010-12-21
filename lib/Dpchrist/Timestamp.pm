@@ -1,5 +1,5 @@
 #######################################################################
-# $Id: Timestamp.pm,v 1.21 2010-12-15 00:43:27 dpchrist Exp $
+# $Id: Timestamp.pm,v 1.22 2010-12-21 00:57:14 dpchrist Exp $
 #######################################################################
 # package stuff:
 #----------------------------------------------------------------------
@@ -22,7 +22,7 @@ our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 
 our @EXPORT = ();
 
-our $VERSION = sprintf "%d.%03d", q$Revision: 1.21 $ =~ /: (\d+)\.(\d+)/;
+our $VERSION = sprintf "%d.%03d", q$Revision: 1.22 $ =~ /: (\d+)\.(\d+)/;
 
 #######################################################################
 # functions:
@@ -67,7 +67,7 @@ Dpchrist::Timestamp - generate time stamps
 
 =head1 DESCRIPTION
 
-This documentation describes module revision $Revision: 1.21 $.
+This documentation describes module revision $Revision: 1.22 $.
 
 
 This is alpha test level software
